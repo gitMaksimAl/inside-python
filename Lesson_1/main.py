@@ -1,3 +1,6 @@
+"""
+gb3474. Inside python. Seminar 1
+"""
 # task 1
 REFORM = 1582
 BIG_LEAP_YEAR = 400
@@ -12,7 +15,6 @@ FIRST_CONDITION = 10
 SECOND_CONDITION = 100
 
 # task3
-TREE_LEVELS = 1
 CHARACTER = '*'
 FILLER = ' '
 
@@ -43,7 +45,7 @@ def task1():
         result = f'{year} - is leap year.'
     else:
         result = f'{year} - not leap year.'
-        return  result
+    return result
 
 
 def task2():
@@ -88,10 +90,9 @@ def task3():
     Сколько рядов у ёлки?
     :return:
     """
-    global TREE_LEVELS
-    TREE_LEVELS = int(input('How many levels does the tree have? '))
-    filler_len = TREE_LEVELS
-    for line in range(TREE_LEVELS):
+    tree_levels = int(input('How many levels does the tree have? '))
+    filler_len = tree_levels
+    for line in range(tree_levels):
         for _ in range(filler_len):
             print(FILLER, end='')
         for _ in range(line):
