@@ -35,7 +35,7 @@ for name in hike:
 # for friend, things in hike.items():
 #     diff_things = not_common_things - set(things)
 
-# TODO: wrong
+# TODO: find another solution
 standalone_things = dict()
 for master_key, master_value in hike.items():
     for slave_key, slave_value in hike.items():
@@ -45,7 +45,19 @@ for master_key, master_value in hike.items():
             else:
                 standalone_things[master_key] -= set(slave_value)
 
+# some reason
+# TODO: find another solution
+dublicates = set(all_things)
+for value in standalone_things.values():
+    dublicates -= value
+
+not_have_things = {}
+for key, value in hike.items():
+    other = (set(value) ^ dublicates) - set(standalone_things[key])
+    not_have_things[key] = other
+
 print(f"list of all things: {all_things}")
 print(f"common things: {common_things}")
 print(f"not common things: {not_common_things}")
 print(f"have only one friend: {standalone_things}")
+print(f"friend not have thing like another: {not_have_things}")
