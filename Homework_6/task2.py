@@ -42,6 +42,7 @@ def print_table(rows: int, columns: int,
         print('\n')
 
 
-# print_table(8, 8, queens)
-for combo in queens:
-    print(check_queens(combo))
+if __name__ == '__main__':
+    # print_table(8, 8, queens)
+    for combo in queens:
+        print(check_queens(combo))
