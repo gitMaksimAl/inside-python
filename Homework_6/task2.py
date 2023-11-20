@@ -10,7 +10,12 @@
 
 from itertools import combinations
 
-queens = [(1, 1), (2, 3), (3, 5), (4, 7), (5, 2), (6, 4), (7, 6), (8, 8)] 
+queens = [[(1, 1), (2, 3), (3, 5), (4, 7), (5, 2), (6, 4), (7, 6), (8, 8)],
+    [(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8)],
+    [(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 7), (1, 8)],
+    [(1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1)],
+    [],
+    [(4, 4)]]
 
 
 def is_attacking(q1: tuple[int, int], q2: tuple[int, int]) -> bool:
@@ -24,13 +29,12 @@ def is_attacking(q1: tuple[int, int], q2: tuple[int, int]) -> bool:
 
 
 def check_queens(queen_set: list[tuple[int, int]]) -> bool:
-    for pair in combinations(queen_set, 2):
-        print(f"{pair=}: {is_attacking(*pair)}")
-    return any(map(lambda pair: is_attacking(*pair),
+    return not any(map(lambda pair: is_attacking(*pair),
                    combinations(queen_set, 2)))
 
 
-def print_table(rows: int, columns: int, figures: list[tuple[int, int]]) -> None:
+def print_table(rows: int, columns: int,
+                figures: list[tuple[int, int]]) -> None:
     for row in range(1, rows + 1):
         for column in range(1, columns + 1):
             if (row, column) in figures:
@@ -40,5 +44,6 @@ def print_table(rows: int, columns: int, figures: list[tuple[int, int]]) -> None
         print('\n')
 
 
-print_table(8, 8, queens)
-print(check_queens(queens))
+# print_table(8, 8, queens)
+for combo in queens:
+    print(check_queens(combo))
