@@ -23,8 +23,6 @@ def is_attacking(q1: tuple[int, int], q2: tuple[int, int]) -> bool:
         return True
     if abs(q2[0] - q1[0]) == abs(q2[1] - q1[1]):
         return True
-    if sum(q2) == sum(q1):
-        return True
     return False
 
 
