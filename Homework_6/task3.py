@@ -36,5 +36,5 @@ def generate_boards():
     return board_list
 
 
-# print(*generate_boards())
-generate_boards()
+if __name__ == '__main__':
+    generate_boards()
