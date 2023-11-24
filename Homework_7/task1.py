@@ -18,7 +18,7 @@ def rename_files(desired_name: str, num_digits: int,
                  source_ext: str, target_ext: str,
                  name_slice: list[int]=None) -> None:
     folder = 'test_folder'
-    start = end = None
+    start = end = 0
     if name_slice:
         start, end = name_slice
     if not target_ext.startswith('.'):
@@ -36,5 +36,5 @@ def rename_files(desired_name: str, num_digits: int,
 
 
 if __name__ == '__main__':
-    rename_files(desired_name="", num_digits=3, source_ext="doc",
-                 target_ext="png", name_slice=[0, 1])
+    rename_files(desired_name="file_", num_digits=3, source_ext="txt",
+                 target_ext="png")
