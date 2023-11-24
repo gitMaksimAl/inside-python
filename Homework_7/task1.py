@@ -25,14 +25,15 @@ def rename_files(desired_name: str, num_digits: int,
         target_ext = '.' + target_ext
     if Path(folder).is_dir():
         chdir(Path.cwd().joinpath(folder))
-    for i, file in enumerate(Path.cwd().iterdir(), start=1):
+    i = 1
+    for file in Path.cwd().iterdir():
         if file.suffix[1:] == source_ext:
             path = file.parent
             name = file.stem
             suff = file.suffix if not target_ext else target_ext
             file_name = f"{name[start: end]}{desired_name}{i:0={num_digits}}"
-            print(file_name)
             file.replace(Path.joinpath(path, file_name).with_suffix(suff))
+            i += 1
 
 
 if __name__ == '__main__':
