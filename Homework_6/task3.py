@@ -46,7 +46,7 @@ def generate_boards() -> list[list]:
         board_list.append([])
         threads[f'{i}'] = Thread(target=__create_board,
                                 name=f'board_{i}',
-                                args=(board_list[i], 8))
+                                args=(board_list[i], __QUEENS_COUNT))
         threads[f'{i}'].start()
         for thread in threads.values():
             thread.join()
