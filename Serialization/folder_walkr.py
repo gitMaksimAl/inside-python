@@ -1,7 +1,6 @@
 """
 Folder walker with file meta collect.
 """
-import sys
 from pathlib import Path
 import pickle
 import csv
@@ -119,9 +118,9 @@ def traverse_directory_list(directory: str | Path) -> str | None:
         raise ValueError
     result = []
     __recursive_walker__(directory, result)
-    return save_method["pickle"](result, directory.with_suffix('.pickle').name)
+    return save_method["json"](result, directory.with_suffix('.json').name)
 
 
 if __name__ == "__main__":
     # print(traverse_directory('test'))
-    print(traverse_directory_list('test'))
+    print(traverse_directory_list('outside/test'))

@@ -35,6 +35,8 @@ MANIFEST
 *.json
 *.csv
 test
+for_gb_*
+test.txt
 
 # Installer logs
 pip-log.txt
