@@ -120,7 +120,3 @@ def traverse_directory_list(directory: str | Path) -> str | None:
     __recursive_walker__(directory, result)
     return save_method["json"](result, directory.with_suffix('.json').name)
 
-
-if __name__ == "__main__":
-    # print(traverse_directory('test'))
-    print(traverse_directory_list('outside/test'))
