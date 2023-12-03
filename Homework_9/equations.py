@@ -35,7 +35,7 @@ def generator_limit(func: Callable) -> Callable:
 @generator_limit
 def generate_csv_file(file_name: str, rows: int) -> None:
     """
-    KSV file generator with n-strings of a set of numbers of 3
+    CSV file generator with n-strings of a set of numbers of 3
     :param file_name: file name with csv extension
     :param rows: number of sets of number
     :return: no return. Artefact - file
