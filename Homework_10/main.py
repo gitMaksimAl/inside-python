@@ -1,4 +1,4 @@
-from AnimalFactory import AnimalFactory
+from Homework_10.factory import AnimalFactory
 
 if __name__ == "__main__":
     animal1 = AnimalFactory.create_animal('Bird', 'Орел', 200)

@@ -1,4 +1,4 @@
-from Animals import Animal, Fish, Bird, Mammal
+from Homework_10.animals import Animal, Fish, Bird, Mammal
 
 __all__ = [
     'AnimalFactory'
