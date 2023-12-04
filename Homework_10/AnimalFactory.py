@@ -1,5 +1,9 @@
 from Animals import Animal, Fish, Bird, Mammal
 
+__all__ = [
+    'AnimalFactory'
+]
+
 
 class AnimalFactory:
 

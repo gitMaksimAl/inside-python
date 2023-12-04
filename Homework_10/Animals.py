@@ -1,6 +1,13 @@
 """
-Class Animal with childs.
+Class Animal with children.
 """
+
+__all__ = [
+    'Animal',
+    'Fish',
+    'Bird',
+    'Mammal'
+]
 
 
 class Animal:
