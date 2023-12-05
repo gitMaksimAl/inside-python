@@ -35,7 +35,7 @@ def generator_limit(func: Callable) -> Callable:
 @generator_limit
 def generate_csv_file(file_name: str, rows: int) -> None:
     """
-    KSV file generator with n-strings of a set of numbers of 3
+    CSV file generator with n-strings of a set of numbers of 3
     :param file_name: file name with csv extension
     :param rows: number of sets of number
     :return: no return. Artefact - file
@@ -55,36 +55,32 @@ def generate_csv_file(file_name: str, rows: int) -> None:
         csv_writer.writerows(args_list)
 
 
-def save_to_json(file: str) -> Callable:
+def save_to_json(func: Callable) -> Callable:
     """
     Decorator for save func result to json file.
-    :param file: file name
+    :param func:
     :return: artefact JSON file
     """
 
-    def func_call(func: Callable) -> Callable:
+    @wraps(func)
+    def wrapp(file: str) -> None:
+        in_data = []
+        with open(file, 'r', encoding='utf-8', newline='') as i:
+            reader = csv.DictReader(i, fieldnames=['a', 'b', 'c'],
+                                    dialect='excel-tab',
+                                    quoting=csv.QUOTE_NONNUMERIC)
+            for num_set in reader:
+                in_data.append(num_set)
+        in_data.remove(in_data[0])
+        for equation in in_data:
+            equation['result'] = func(**equation)
+        with open(__OUT_FILE, 'w', encoding='utf-8', newline='') as o:
+            dump(in_data, o, indent=2)
 
-        @wraps(func)
-        def wrapp() -> None:
-            in_data = []
-            with open(file, 'r', encoding='utf-8', newline='') as i:
-                reader = csv.DictReader(i, fieldnames=['a', 'b', 'c'],
-                                        dialect='excel-tab',
-                                        quoting=csv.QUOTE_NONNUMERIC)
-                for num_set in reader:
-                    in_data.append(num_set)
-            in_data.remove(in_data[0])
-            for equation in in_data:
-                equation['result'] = func(**equation)
-            with open(__OUT_FILE, 'w', encoding='utf-8', newline='') as o:
-                dump(in_data, o, indent=2)
-
-        return wrapp
-
-    return func_call
+    return wrapp
 
 
-@save_to_json(__IN_FILE)
+@save_to_json
 def find_roots(a: int, b: int, c: int) -> tuple[float, float] | float | None:
     """
     Find roots of the quadratic equations.
@@ -109,4 +105,4 @@ def find_roots(a: int, b: int, c: int) -> tuple[float, float] | float | None:
 
 if __name__ == "__main__":
     generate_csv_file(__IN_FILE, 55)
-    find_roots()
+    find_roots(__IN_FILE)
