@@ -25,15 +25,18 @@ class Circle:
 
 class Rectangle:
 
-    def __init__(self, width: int, height: int):
+    def __init__(self, width: int, height: int=None):
         self.width = width
         self.height = height if height else width
 
     def perimeter(self):
         return 2 * (self.width + self.height)
 
-    def square(self):
+    def area(self):
         return self.width * self.height
+
+    def __repr__(self):
+        return f"Rectangle({self.width=}, {self.height=})"
 
 
 # Напишите класс для хранения информации о человеке: ФИО, возраст и т.п. на
@@ -84,6 +87,6 @@ if __name__ == "__main__":
     p = Person('Arseni', 'Efgrafov', 'Sergeevich', 33)
     e = Employee('Inokenti', 'Drobinin', 'Ivanovich', 32, 102_342)
     print(c.square(), c.perimeter(), sep='\n')
-    print(r.square(), r.perimeter(), sep='\n')
+    print(r.area(), r.perimeter(), sep='\n')
     print(f"{p.fullname()}, age: {p.age}")
     print(f"{e.fullname()}, age: {e.age}, level:{e.get_level()}")
