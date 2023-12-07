@@ -17,7 +17,7 @@ class MyStr(str):
         return self + string
 
     def __repr__(self):
-        return "MyStr(" + self + f", {self.author})"
+        return "MyStr('" + self + f"', '{self.author}')"
 
 
 if __name__ == "__main__":
