@@ -20,39 +20,37 @@ class Rectangle:
         perimeter = self.perimeter() + other.perimeter()
         width = self.width + other.width
         height = perimeter / 2 - width
-        return Rectangle(width, height)
+        return Rectangle(int(width), int(height))
 
     def __sub__(self, other: "Rectangle"):
-        """
-                Subtraction of figures by perimeter is possible
-                if one of their sides is equals.
-                :param other:
-                :return:
-                """
-        if self.perimeter() < other.perimeter():
-            return None
-        perimeter = self.perimeter() - other.perimeter()
-        if self.width == other.width:
-            length = perimeter / 2
-            width = self.width
-        elif self.height == other.height:
-            width = perimeter / 2
-            length = self.height
-        else:
-            raise TypeError('the operation is possible only on similar objects')
-        return Rectangle(width, length)
+        perimeter = abs(self.perimeter() - other.perimeter())
+        width = abs(self.width - other.width)
+        height = perimeter / 2 - width
+        return Rectangle(int(width), int(height))
 
-    def __eq__(self, other: "Rectangle"):
+    def __eq__(self, other: "Rectangle") -> bool:
         return self.area() == other.area()
 
-    def __lt__(self, other: "Rectangle"):
+    def __lt__(self, other: "Rectangle") -> bool:
         return self.area() < other.area()
 
-    def __le__(self, other: "Rectangle"):
+    def __le__(self, other: "Rectangle") -> bool:
         return self.area() <= other.area()
 
 
 if __name__ == "__main__":
-    r1 = Rectangle(5, 10)
-    r2 = Rectangle(3, 7)
-    print(r1, r2, sep='\n')
+    rect1 = Rectangle(5, 10)
+    rect2 = Rectangle(3, 7)
+
+    print(f"Периметр rect1: {rect1.perimeter()}")
+    print(f"Площадь rect2: {rect2.area()}")
+    print(f"rect1 < rect2: {rect1 < rect2}")
+    print(f"rect1 == rect2: {rect1 == rect2}")
+    print(f"rect1 <= rect2: {rect1 <= rect2}")
+
+    rect3 = rect1 + rect2
+    print(f"Периметр rect3: {rect3.perimeter()}")
+    rect4 = rect1 - rect2
+    print(f"Ширина rect4: {rect4.width}")
+    print(Rectangle(3, 7) <= Rectangle(5, 10))
+    print(Rectangle(4, 5) <= Rectangle(3, 3))
