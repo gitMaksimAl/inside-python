@@ -109,9 +109,9 @@ class Student:
 
     def get_average_grade(self) -> float:
         total = {}
-        for sub, grades in self.subjects.items():
-            total[sub] = sum(grades["grades"]) / len(grades["grades"])
         try:
+            for sub, grades in self.subjects.items():
+                total[sub] = sum(grades["grades"]) / len(grades["grades"])
             return round(sum(total.values()) / len(total), 1)
         except ZeroDivisionError:
             return 0.0
