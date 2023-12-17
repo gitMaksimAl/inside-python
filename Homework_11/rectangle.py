@@ -2,7 +2,7 @@ class Rectangle:
 
     def __init__(self, width: int | float, height: int | float=None):
         self.width = width
-        self.height = height
+        self.height = height if height else width
 
     def perimeter(self) -> int:
         return int(2 * (self.width + self.height))
