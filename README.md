@@ -1,5 +1,9 @@
 # inside-python
 
+## Homework 6
+
+### Eight queens problem
+
 ## Homework 8
 
 ### Serialization
