@@ -7,6 +7,7 @@ Eight queens problem.
 from itertools import combinations
 from random import randint
 from multiprocessing import Pool
+from psutil import Process as ps_process
 
 from task2 import is_attacking
 
@@ -25,6 +26,7 @@ def __create_board(process_number) -> list:
     :param length: count of coordinates pair
     :return:
     """
+    cpu = ps_process().cpu_num()
     target = []
     start = __START_COORD
     while len(target) < __QUEENS_COUNT:
@@ -34,11 +36,12 @@ def __create_board(process_number) -> list:
             if is_attacking(q1, q2):
                 target.clear()
                 start = 1
-    print(f"\x1B[3mProcess N{process_number}: done!\x1B[0m")
+    print(f"\x1B[3mProcess N{process_number},"
+          f"cpu N{cpu}: done!\x1B[0m", end='\r')
     return target
 
 
-def generate_boards() -> list:
+def generate_boards() -> list[list]:
     """
     Generates 4 sets of placements of 8 pieces on the board.
     Each set runs in a separate thread.
@@ -51,5 +54,5 @@ def generate_boards() -> list:
 
 
 if __name__ == '__main__':
-     for board in generate_boards():
-         print(board)
+    from timeit import timeit
+    print(timeit(stmt=generate_boards, number=3))
