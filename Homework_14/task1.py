@@ -91,6 +91,7 @@ class Rectangle:
         6.0
         """
         perimeter = self.perimeter() + other.perimeter()
+
         width = self.width + other.width
         height = perimeter / 2 - width
         return Rectangle(width, height)
